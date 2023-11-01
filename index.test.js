@@ -7,10 +7,13 @@ describe("Band, Musician, and Song Models", () => {
    */
   let fooFighters;
   let daveGrohl;
+  let everlong;
   let updateBand;
   let updateDave;
+  let updateEverlong;
   let deleteFoo;
   let deleteDave;
+  let deleteEverlong;
 
   beforeAll(async () => {
     console.log(fooFighters);
@@ -26,6 +29,11 @@ describe("Band, Musician, and Song Models", () => {
       name: "Dave Grohl",
       instrument: "Guitar",
     });
+    everlong = await Song.create({
+      title: "Everlong",
+      year: 1999,
+      length: 180,
+    });
   });
 
   test("can create a Band", async () => {
@@ -36,6 +44,10 @@ describe("Band, Musician, and Song Models", () => {
   test("can create a Musician", async () => {
     // TODO - test creating a musician
     expect(daveGrohl instanceof Musician).toBe(true);
+  });
+  test("can create a Song", async () => {
+    // TODO - test creating a band
+    expect(everlong instanceof Song).toBe(true);
   });
 
   //describe("Update tests", async () => {
@@ -49,7 +61,10 @@ describe("Band, Musician, and Song Models", () => {
     updateDave = await daveGrohl.update({ instrument: "Pan pipes" });
     expect(await updateDave.instrument).toBe("Pan pipes");
   });
-  //});
+  test("can update a Song", async () => {
+    updateEverlong = await everlong.update({ title: "Everlong!" });
+    expect(await updateEverlong.title).toBe("Everlong!");
+  });
 
   test("can delete a Band", async () => {
     deleteFoo = await fooFighters.destroy();
@@ -59,5 +74,9 @@ describe("Band, Musician, and Song Models", () => {
   test("can delete a Musician", async () => {
     deleteDave = await daveGrohl.destroy();
     expect(await deleteDave.name).toBe("Dave Grohl");
+  });
+  test("can delete a Song", async () => {
+    deleteEverlong = await everlong.destroy();
+    expect(await deleteEverlong.title).toBe("Everlong!");
   });
 });
