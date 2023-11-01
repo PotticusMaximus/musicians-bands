@@ -9,6 +9,8 @@ describe("Band, Musician, and Song Models", () => {
   let daveGrohl;
   let updateBand;
   let updateDave;
+  let deleteFoo;
+  let deleteDave;
 
   beforeAll(async () => {
     console.log(fooFighters);
@@ -50,12 +52,12 @@ describe("Band, Musician, and Song Models", () => {
   //});
 
   test("can delete a Band", async () => {
-    // TODO - test deleting a band
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    deleteFoo = await fooFighters.destroy();
+    expect(await deleteFoo.name).toBe("Foo Fighters");
   });
 
   test("can delete a Musician", async () => {
-    // TODO - test deleting a musician
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    deleteDave = await daveGrohl.destroy();
+    expect(await deleteDave.name).toBe("Dave Grohl");
   });
 });
